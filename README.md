@@ -8,9 +8,9 @@
 
 但基本不外乎于是用各种方式制作虚拟女友，甚至还包含一个用mirai和easymirai做的qq机器人
 
-单纯储存文件，反正也没人看
+单纯储存文件，反正也没人看，好吧真乱啊。
 
-w11是个基本框架,main_chat是我正在玩的，没有装live2dviewer建议将其中live2dviewer的代码删掉
+w11是个单文件执行的chatgpt,new_ui是我正在玩的，用了vits-finetuning来制作语音，live2dviewer来匹配live2d。没有装live2dviewer将其中use_live2d改为False
 
 里面一堆api key我甚至没有删除，建议用自己的，反证也不值钱
 
