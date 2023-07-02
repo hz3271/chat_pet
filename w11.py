@@ -13,7 +13,7 @@ import time
 from datetime import datetime
 import main
 # 设置 API 密钥
-api_key = "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"
+api_key = "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"
 openai.api_key = api_key
 MODEL = "gpt-3.5-turbo"
 
@@ -248,5 +248,5 @@ if __name__ == "__main__":
     app = ChatUI()
     app.mainloop()
 
-#本程序的打包代码pyinstaller --noconsole --hidden-import=openai --add-data "user.png;." --add-data "ai.png;." w11.py
+#本程序的打包代码pyinstaller --noconsole --onefile --hidden-import=openai --add-data "user.png;." --add-data "ai.png;." w11.py
 #--onefile

@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests
 import json
 
@@ -52,8 +54,10 @@ def get_weather_data():
     second_day_high=daily_forecasts[0]['high']
     second_day_low = daily_forecasts[0]['low']
     # 处理结果
-
-    weather_date = city + "现在" + str(now_temp) + "度" + now_weather + ",明天" + second_day_week + second_day_text_day + ",最高温度" + str(
+    current_time = datetime.now()
+    month = str(current_time.month)
+    day = str(current_time.day)
+    weather_date ="今天是"+month+"月"+day+"日。"+ city + "当前气温" + str(now_temp) + "度" + now_weather + ",明天" + second_day_week + second_day_text_day + ",最高温度" + str(
         second_day_high) + "最低温度" + str(second_day_low)
 
 

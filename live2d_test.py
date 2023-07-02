@@ -5,13 +5,25 @@ import websockets
 import threading
 import time
 
+
 class Simple:
     def __init__(self):
+        #self.master = master
         self.websocket = None
-        self.i=0
         self.loop = asyncio.new_event_loop()
         asyncio.set_event_loop(self.loop)
-        self.start_connect()
+        #self.i = 0
+        self.start_connect
+        #master.title("简单示例")
+
+        #self.text_box = tk.Text(master)
+        #self.text_box.pack()
+
+        #self.connect_button = tk.Button(master, text="连接", command=self.start_connect)
+        #self.connect_button.pack()
+
+        #self.test_button = tk.Button(master, text="测试气泡", command=self.send_message)
+        #self.test_button.pack()
 
     async def connect(self):
         uri = "ws://127.0.0.1:10086/api"
@@ -21,14 +33,14 @@ class Simple:
             await self.websocket.send(json.dumps(msg))
             print("***连接中***")
             while True:
+                time.sleep(1)
                 response = await self.websocket.recv()
+                print(response)
                 if isinstance(response, str):
                     response = json.loads(response)
                 msg_value = response.get('msg', None)
                 if msg_value == 10000:
                     print("***连接成功***")
-                    self.i=1
-                    print(self.i)
                 else:
                     print(response)
 
@@ -37,7 +49,8 @@ class Simple:
             self.loop.run_until_complete(self.connect())
         threading.Thread(target=target).start()
 
-    async def send_message(self,text):
+    def send_message(self,text):
+
         msg1 = {
             "msg": 11000,
             "msgId": 1,
@@ -46,26 +59,15 @@ class Simple:
                 "text": str(text),
                 "textFrameColor": 0x000000,
                 "textColor": 0xFFFFFF,
-                "duration": 600000,
+                "duration": 1000
             }
         }
-        msg2 = {
-              "msg": 13300,
-              "msgId": 1,
-              "data": {
-                "id": 0,
-                "expId": 1
-              }
-            }
-        await self.websocket.send(json.dumps(msg1))
 
-        print("发送+更改表情")
+        def target():
+            asyncio.run_coroutine_threadsafe(self.websocket.send(json.dumps(msg1)), self.loop)
+        threading.Thread(target=target).start()
 
-    def call_send_message(self, text):
-        while True:
-            if self.i == 1:
-                asyncio.run(self.send_message(text))
-                break
 
-#chat2d=Simple()
-#chat2d.call_send_message("你好")
+#root = tk.Tk()
+#my_gui = Simple(root)
+#root.mainloop()

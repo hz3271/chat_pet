@@ -1,5 +1,5 @@
 @echo off
 python -m venv venv
 call venv\Scripts\activate
-python w11.py 1>nul
+python mukuchi_UI_ADDTEXT.py 1>nul
 pause
